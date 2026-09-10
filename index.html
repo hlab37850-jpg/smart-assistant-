@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>المساعد الذكي — Smart Assistant</title>
+<meta name="theme-color" content="#146356">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+</head>
+<body>
+  <header class="topbar">
+    <button id="menuToggle" class="icon-btn" aria-label="القائمة">☰</button>
+    <div class="brand">المساعد الذكي</div>
+    <div class="top-actions">
+      <a href="#assistant" class="icon-btn" title="المساعد الذكي">🤖</a>
+      <span class="icon-btn badge-wrap" title="التنبيهات">🔔<span id="alertBadge" class="badge"></span></span>
+      <button id="themeToggle" class="icon-btn" title="تبديل المظهر">🖥️</button>
+    </div>
+  </header>
+
+  <nav id="sideNav" class="side-nav">
+    <a href="#dashboard" class="nav-link active">لوحة التحكم</a>
+    <a href="#customers" class="nav-link">العملاء</a>
+    <a href="#forgotten" class="nav-link">العملاء المنسيون</a>
+    <a href="#inventory" class="nav-link">الأصناف والمخزون</a>
+    <a href="#import" class="nav-link">الاستيراد الذكي</a>
+    <a href="#review" class="nav-link">قائمة المراجعة</a>
+    <a href="#reports" class="nav-link">التقارير</a>
+    <a href="#backup" class="nav-link">النسخ الاحتياطي</a>
+    <a href="#users" class="nav-link">المستخدمون والصلاحيات</a>
+    <a href="#log" class="nav-link">سجل النشاط</a>
+    <a href="#assistant" class="nav-link">المساعد الذكي</a>
+    <a href="#settings" class="nav-link">الإعدادات</a>
+  </nav>
+
+  <main id="appContent" class="app-content"></main>
+  <div id="toastBox" class="toast-box"></div>
+
+  <!-- Third-party libs (loaded from CDN by the user's browser at runtime — real parsing, not simulated) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.1/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+  <script>
+    if (window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js';
+  </script>
+
+  <script src="js/db.js"></script>
+  <script src="js/import.js"></script>
+  <script src="js/modules.js"></script>
+  <script src="js/reports-backup.js"></script>
+  <script src="js/assistant.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+    }
+  </script>
+</body>
+</html>
